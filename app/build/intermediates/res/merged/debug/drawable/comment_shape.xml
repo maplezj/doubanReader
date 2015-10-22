@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <stroke
+        android:color="#000000"
+        android:dashWidth="2dp"
+        android:dashGap="0dp"
+        android:width="2dp"/>
+</shape><!-- From: file:/Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/res/drawable/comment_shape.xml -->

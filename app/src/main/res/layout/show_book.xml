@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="250dp"
+                android:id="@+id/book_image"
+                android:src="@drawable/ic_launcher"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/book_image"
+                android:text="作 者:"
+                android:id="@+id/author_text"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/author_text"
+                android:id="@+id/author" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/author_text"
+                android:layout_toRightOf="@+id/book_image"
+                android:id="@+id/number_text"
+                android:text="星 评："/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/number_text"
+                android:layout_alignBottom="@+id/number_text"
+                android:id="@+id/number"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/book_image"
+                android:text="写评论"
+                android:id="@+id/comment"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/comment"
+                android:layout_marginTop="20sp"
+                android:text="标 题  "
+                android:textSize="20dp"
+                android:id="@+id/comment_edit_title_text"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/comment_edit_title_text"
+                android:layout_alignBottom="@+id/comment_edit_title_text"
+                android:id="@+id/comment_edit"
+                android:background="@drawable/comment_shape"
+                android:layout_marginRight="100dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/comment_edit"
+                android:background="@drawable/comment_shape"
+                android:id="@+id/comment_edit_title"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="作者简介--------------"
+                android:layout_below="@+id/comment_edit_title"
+                android:layout_marginTop="20sp"
+                android:id="@+id/author1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/author_info"
+                android:layout_below="@+id/author1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="目录--------------"
+                android:layout_below="@+id/author_info"
+                android:id="@+id/catalog_text"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/catalog_text"
+                android:id="@+id/catalog"
+                android:ellipsize="end"
+                android:lines="5"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
