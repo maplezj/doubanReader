@@ -86,8 +86,8 @@ ADDED from /Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/And
 	android:name
 		ADDED from /Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/AndroidManifest.xml:41:27-75
 data
-ADDED from /Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/AndroidManifest.xml:42:17-77
+ADDED from /Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/AndroidManifest.xml:42:17-78
 	android:host
-		ADDED from /Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/AndroidManifest.xml:42:47-75
+		ADDED from /Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/AndroidManifest.xml:42:48-76
 	android:scheme
-		ADDED from /Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/AndroidManifest.xml:42:24-45
+		ADDED from /Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/AndroidManifest.xml:42:24-46

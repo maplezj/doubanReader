@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
@@ -12,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ public class SearchBookUtils extends AsyncTask<Void, Void, List > {
     public static Context context;
     public String content_search;
     public ListView listView;
+    public static BookAdapter adapter ;
     List bookList = null;
     public SearchBookUtils(Context context, String content_search, ListView listView){
         this.context = context;
@@ -62,13 +65,22 @@ public class SearchBookUtils extends AsyncTask<Void, Void, List > {
     }
 
     @Override
-    protected void onPostExecute(List bookList) {
+    protected void onPostExecute(final List bookList) {
        // super.onPostExecute(bookList);
        // Log.d("SearchBookUtils",bookList.toString());
         //Log.d("SearchBookUtils","-----------------1");
-        BookAdapter adapter = new BookAdapter(context, R.layout.book_item, bookList);
+        adapter = new BookAdapter(context, R.layout.book_item, bookList);
+        RefreshableView.status = 1;
         //Log.d("SearchBookUtils","-----------------2");
         listView.setAdapter(adapter);
+        //为listView设置监听器
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BookData bookData = (BookData)bookList.get(position);
+                new ShowBookInfoUtils(bookData.getUrl()).execute();
+            }
+        });
         //Log.d("SearchBookUtils", "-----------------3");
     }
 }

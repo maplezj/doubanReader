@@ -26,11 +26,20 @@ import java.util.List;
  */
 public class BookAdapter extends ArrayAdapter<BookData>{
     private int resoureId;
+    private List bookList;
     public BookAdapter(Context context, int textViewResourceId, List<BookData> objects){
         super(context,textViewResourceId,objects);
         //Log.d("BookAdapter", "-----------------1");
         resoureId = textViewResourceId;
+        bookList = objects;
     }
+
+    public void refresh(List list) {
+        bookList = list;
+        notifyDataSetChanged();
+
+    }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -55,13 +64,13 @@ public class BookAdapter extends ArrayAdapter<BookData>{
         final ImageView mImageView = (ImageView)view.findViewById(R.id.image_view_id);
         final String imageUrl = bookData.getImage();
 
-        mImageView.setOnClickListener(new View.OnClickListener() {
+        /*mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("BookAdapter","------------Listener succeed");
                 new ShowBookInfoUtils(bookData.getUrl()).execute();
             }
-        });
+        });*/
 
        // ImageSize mImageSize = new ImageSize(100, 100);
         //显示图片的配置

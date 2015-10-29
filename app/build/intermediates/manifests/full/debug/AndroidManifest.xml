@@ -40,7 +40,7 @@
 
                 <data
                     android:host="www.baidu.com"
-                    android:scheme="http" />
+                    android:scheme="myapp" />
             </intent-filter>
         </activity>
     </application>

@@ -22,7 +22,7 @@ public class PrepareRequestTokenActivity extends Activity{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		final Uri uri = intent.getData();
 		Log.d("PrepareReqTokenActivity", uri.toString());
-		if(uri != null && uri.getScheme().equals("http")){
+		if(uri != null && uri.getScheme().equals("myapp")){
 			new RetrieveAccessTokenTask(this, prefs).execute(uri);
 			Log.d("RetrieveAccessTokenTask", "----------------");
 			finish();

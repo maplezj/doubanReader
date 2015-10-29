@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/zhaojian26/Downloads/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jar="/Users/zhaojian26/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="/Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-d84a963282c1dc2437075bacf12a0de7420f30ff.jar" />
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/build/intermediates/pre-dexed/debug/gson-2.3.1-f49c108d27212a537817ed6cfc233767cc72386e.jar" />
     </item>
     <item
         jar="/Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/src/main/libs/universal-image-loader-1.9.4.jar"
@@ -16,11 +16,11 @@
         <dex dex="/Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.4-3deefe6bc72b8edecd394a751c3489d8402f63f2.jar" />
     </item>
     <item
-        jar="/Users/zhaojian26/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jar="/Users/zhaojian26/Downloads/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="/Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/build/intermediates/pre-dexed/debug/gson-2.3.1-f49c108d27212a537817ed6cfc233767cc72386e.jar" />
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="/Users/zhaojian26/AndroidStudioProjects/DoubanReader/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-d84a963282c1dc2437075bacf12a0de7420f30ff.jar" />
     </item>
 
 </items>

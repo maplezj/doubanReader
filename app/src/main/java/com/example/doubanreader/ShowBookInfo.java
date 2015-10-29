@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
+import java.util.List;
 
 /**
  * Created by zhaojian26 on 15-10-11.
@@ -31,6 +34,8 @@ public class ShowBookInfo extends Activity {
     private EditText commentEdit;
     private TextView authorInfo;
     private TextView catalog;
+    private Button back;
+    private ListView reviewsList;
 
     //用于点击EditText以外时隐藏键盘
     @Override
@@ -83,10 +88,13 @@ public class ShowBookInfo extends Activity {
         commentEdit = (EditText)findViewById(R.id.comment_edit);
         authorInfo = (TextView)findViewById(R.id.author_info);
         catalog = (TextView)findViewById(R.id.catalog);
+        back = (Button)findViewById(R.id.back_button);
         author.setText(bookDetail.getAuthor());
         number.setText(bookDetail.getNumber());
         authorInfo.setText(bookDetail.getAuthorInfo());
         catalog.setText(bookDetail.getCatalog());
+
+        reviewsList = (ListView)findViewById(R.id.book_reviews);
 
 
 

@@ -22,13 +22,19 @@ public class SearchBook extends Activity {
     public EditText content;
     public Button searchBookButton;
     public ListView listView;
+    RefreshableView refreshableView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_book);
-        listView = (ListView) findViewById(R.id.list_view);
+        refreshableView = (RefreshableView) findViewById(R.id.refreshable_view);
+        listView =(ListView)findViewById(R.id.list_view);
         searchBookButton = (Button)findViewById(R.id.search_book);
         content = (EditText)findViewById(R.id.content);
+
+        refreshableView.setOnRefreshListener(new RefreshBookItem(refreshableView, getApplicationContext(), content_get), 1);
+
         searchBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +44,9 @@ public class SearchBook extends Activity {
                     imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
                 }
                 content_get = content.getText().toString();
-                new SearchBookUtils(SearchBook.this,content_get,listView).execute();
+                if(content_get.length()!= 0) {
+                    new SearchBookUtils(SearchBook.this, content_get, listView).execute();
+                }
             }
         });
 
