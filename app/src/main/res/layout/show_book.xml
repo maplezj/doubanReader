@@ -20,6 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/back_button"
+                android:background="#66cc00"
                 android:text="←"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -31,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/share"
                 android:text="分享"
+                android:background="#66cc00"
                 android:layout_marginLeft="190dp"
                 android:gravity="left|center_vertical"/>
         </LinearLayout>
@@ -144,12 +146,12 @@
                         android:text="读者评论"
                         android:layout_marginTop="20dp"
                         android:id="@+id/book_reviews_text"/>
-                    <ListView
+                    <com.example.doubanreader.ListViewForScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/book_reviews"
                         android:layout_below="@+id/book_reviews_text">
-                    </ListView>
+                    </com.example.doubanreader.ListViewForScrollView>
         
                 </RelativeLayout>
                 

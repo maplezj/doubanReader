@@ -5,9 +5,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +38,7 @@ public class ShowBookInfo extends Activity {
     private TextView catalog;
     private Button back;
     private ListView reviewsList;
+    private List bookReviewDataList = ShowBookInfoUtils.bookReviewDataList;
 
     //用于点击EditText以外时隐藏键盘
     @Override
@@ -78,9 +81,11 @@ public class ShowBookInfo extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("ShowBookInfo", "---------------222");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_book);
-        BookDetail bookDetail = (BookDetail)getIntent().getSerializableExtra("bookData");
+        BookDetail bookDetail = (BookDetail)getIntent().getSerializableExtra("bookDetail");
+
         bookImage = (ImageView)findViewById(R.id.book_image);
         author = (TextView)findViewById(R.id.author);
         number = (TextView)findViewById(R.id.number);
@@ -94,8 +99,9 @@ public class ShowBookInfo extends Activity {
         authorInfo.setText(bookDetail.getAuthorInfo());
         catalog.setText(bookDetail.getCatalog());
 
-        reviewsList = (ListView)findViewById(R.id.book_reviews);
-
+        reviewsList = (ListViewForScrollView)findViewById(R.id.book_reviews);
+         BookReviewAdapter adapter = new BookReviewAdapter(ShowBookInfo.this, R.layout.book_review_item,bookReviewDataList);
+        reviewsList.setAdapter(adapter);
 
 
         ImageLoader.getInstance().destroy();

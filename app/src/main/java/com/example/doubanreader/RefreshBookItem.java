@@ -2,7 +2,6 @@ package com.example.doubanreader;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -42,7 +41,7 @@ public class RefreshBookItem implements RefreshableView.PullToRefreshListener {
                 response.append(line);
             }
             Log.d("SearchBookUtils", response.toString());
-            bookList = (new DellWithJSON()).parseJSONWithJSONObject(response.toString());
+            bookList = (new DealBookDataByJSON()).parseJSONWithJSONObject(response.toString());
         }catch(Exception e){
             e.printStackTrace();
         }finally{

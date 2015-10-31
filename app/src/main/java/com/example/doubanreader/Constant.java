@@ -10,5 +10,6 @@ public class Constant {
     public static final String ACCESS_TOKEN_URL = "https://www.douban.com/service/auth2/token";
     public static final String REDIRECTLRL = "myapp://www.baidu.com&response_type=code&scope=book_basic_r,book_basic_w,douban_basic_common";
     public static final String BOOK_SEARCH_URL = "https://api.douban.com/v2/book/search?q=";
+    public static final String BOOK_REVIEW_URL = "https://api.douban.com/v2/book/";
 
 }

@@ -1,7 +1,7 @@
 package com.example.doubanreader;
 
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +13,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +22,15 @@ public class SearchBookUtils extends AsyncTask<Void, Void, List > {
     public static Context context;
     public String content_search;
     public ListView listView;
+    private ProgressDialog progressDialog;
+    public static ProgressDialog showBookDialog;
     public static BookAdapter adapter ;
     List bookList = null;
-    public SearchBookUtils(Context context, String content_search, ListView listView){
+    public SearchBookUtils(Context context, String content_search, ListView listView, ProgressDialog progressDialog){
         this.context = context;
         this.content_search = content_search;
         this.listView = listView;
+        this.progressDialog = progressDialog;
     }
 
     @Override
@@ -49,7 +51,7 @@ public class SearchBookUtils extends AsyncTask<Void, Void, List > {
                 response.append(line);
             }
             Log.d("SearchBookUtils", response.toString());
-            bookList = (new DellWithJSON()).parseJSONWithJSONObject(response.toString());
+            bookList = (new DealBookDataByJSON()).parseJSONWithJSONObject(response.toString());
 
 
 
@@ -73,12 +75,17 @@ public class SearchBookUtils extends AsyncTask<Void, Void, List > {
         RefreshableView.status = 1;
         //Log.d("SearchBookUtils","-----------------2");
         listView.setAdapter(adapter);
+        progressDialog.dismiss();
         //为listView设置监听器
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showBookDialog = new ProgressDialog(context);
+                showBookDialog.setCancelable(true);
+                showBookDialog.setMessage("加载中，请稍候...");
+                showBookDialog.show();
                 BookData bookData = (BookData)bookList.get(position);
-                new ShowBookInfoUtils(bookData.getUrl()).execute();
+                new ShowBookInfoUtils(bookData.getUrl(),bookData.getId()).execute();
             }
         });
         //Log.d("SearchBookUtils", "-----------------3");

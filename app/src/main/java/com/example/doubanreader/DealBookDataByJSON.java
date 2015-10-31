@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by zhaojian26 on 15-10-9.
  */
-public class DellWithJSON {
+public class DealBookDataByJSON {
     private int i;
     public List<BookData> bookDataList = new ArrayList<BookData>();
 
@@ -35,11 +35,11 @@ public class DellWithJSON {
                 //String start = jsonObject.getString("start");
                 //String total = jsonObject.getString("total");
                 //String books = jsonObject.getString("books");
-                Log.d("DellWithJSON","id is "+ id);
-                Log.d("DellWithJSON","url is "+ url);
-                Log.d("DellWithJSON","title is "+ title);
-                Log.d("DellWithJSON","image is "+ image);
-                Log.d("DellWithJSON","subtitle is "+ subTitle);
+                Log.d("DealBookDataByJSON","id is "+ id);
+                Log.d("DealBookDataByJSON","url is "+ url);
+                Log.d("DealBookDataByJSON","title is "+ title);
+                Log.d("DealBookDataByJSON","image is "+ image);
+                Log.d("DealBookDataByJSON","subtitle is "+ subTitle);
                 bookDataList.add(new BookData(id, url, title, image, subTitle, itemAuthor, itemNumber, itemPeople, summary));
             }
         }catch (Exception e){

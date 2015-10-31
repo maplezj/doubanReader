@@ -1,6 +1,7 @@
 package com.example.doubanreader;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -45,7 +46,11 @@ public class SearchBook extends Activity {
                 }
                 content_get = content.getText().toString();
                 if(content_get.length()!= 0) {
-                    new SearchBookUtils(SearchBook.this, content_get, listView).execute();
+                    ProgressDialog progressDialog = new ProgressDialog(SearchBook.this);
+                    progressDialog.setCancelable(true);
+                    progressDialog.setMessage("加载中，请稍候...");
+                    progressDialog.show();
+                    new SearchBookUtils(SearchBook.this, content_get, listView, progressDialog).execute();
                 }
             }
         });

@@ -12,8 +12,12 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by zhaojian26 on 15-10-11.
@@ -21,9 +25,13 @@ import java.net.URL;
 public class ShowBookInfoUtils extends AsyncTask<Void, Void, BookDetail> {
     String url ;
     String data;
+    String id;
+    String reviewData;
     private BookDetail bookDetail;
-    public ShowBookInfoUtils(String url){
+    public static List bookReviewDataList;
+    public ShowBookInfoUtils(String url, String id){
         this.url = url;
+        this.id = id;
     }
     @Override
     protected BookDetail doInBackground(Void... params) {
@@ -40,9 +48,24 @@ public class ShowBookInfoUtils extends AsyncTask<Void, Void, BookDetail> {
             while ((line = reader.readLine()) != null){
                 response.append(line);
             }
+
+            URL bookReviewUrl = new URL(Constant.BOOK_REVIEW_URL+id+"/reviews");
+            connection = (HttpURLConnection)bookReviewUrl.openConnection();
+            connection.setRequestMethod("GET");
+            InputStream reviewIn = connection.getInputStream();
+            BufferedReader reviewReader = new BufferedReader(new InputStreamReader(reviewIn));
+            StringBuilder reviewResponse = new StringBuilder();
+            String reviewLine;
+            while ((reviewLine = reviewReader.readLine()) != null){
+                reviewResponse.append(reviewLine);
+            }
+
+            reviewData = reviewResponse.toString();
             data = response.toString();
-            Log.d("ShowBookInfoUtils", response.toString());
+            Log.d("ShowBookInfoUtils", data);
+            Log.d("ShowBookInfoUtils", reviewData);
             bookDetail = new DealBookDetailByJSON().parseJSONWithJSONObject(data);
+            bookReviewDataList = new DealBookReviewByJSON().parseJSONWithJSONObject(reviewData);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -50,16 +73,21 @@ public class ShowBookInfoUtils extends AsyncTask<Void, Void, BookDetail> {
                 connection.disconnect();
             }
         }
+
         return bookDetail;
     }
 
     @Override
     protected void onPostExecute(BookDetail bookDetail) {
+        Log.d("ShowBookInfoUtils","---------------111");
         super.onPostExecute(bookDetail);
         Intent intent = new Intent(SearchBookUtils.context, ShowBookInfo.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("bookData", bookDetail);
+        bundle.putSerializable("bookDetail", bookDetail);
+        Log.d("ShowBookInfoUtils", "---------------222");
         intent.putExtras(bundle);
+        SearchBookUtils.showBookDialog.dismiss();
+        Log.d("ShowBookInfoUtils", "---------------333");
         SearchBookUtils.context.startActivity(intent);
     }
 }
