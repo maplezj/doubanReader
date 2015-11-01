@@ -25,7 +25,7 @@ import java.util.Objects;
 public class ShowBookInfoUtils extends AsyncTask<Void, Void, BookDetail> {
     String url ;
     String data;
-    String id;
+    public static String id;
     String reviewData;
     private BookDetail bookDetail;
     public static List bookReviewDataList;
@@ -49,7 +49,7 @@ public class ShowBookInfoUtils extends AsyncTask<Void, Void, BookDetail> {
                 response.append(line);
             }
 
-            URL bookReviewUrl = new URL(Constant.BOOK_REVIEW_URL+id+"/reviews");
+            URL bookReviewUrl = new URL(Constant.BOOK_REVIEW_URL+id+"/reviews?count=20");
             connection = (HttpURLConnection)bookReviewUrl.openConnection();
             connection.setRequestMethod("GET");
             InputStream reviewIn = connection.getInputStream();
@@ -79,15 +79,12 @@ public class ShowBookInfoUtils extends AsyncTask<Void, Void, BookDetail> {
 
     @Override
     protected void onPostExecute(BookDetail bookDetail) {
-        Log.d("ShowBookInfoUtils","---------------111");
         super.onPostExecute(bookDetail);
         Intent intent = new Intent(SearchBookUtils.context, ShowBookInfo.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("bookDetail", bookDetail);
-        Log.d("ShowBookInfoUtils", "---------------222");
         intent.putExtras(bundle);
         SearchBookUtils.showBookDialog.dismiss();
-        Log.d("ShowBookInfoUtils", "---------------333");
         SearchBookUtils.context.startActivity(intent);
     }
 }

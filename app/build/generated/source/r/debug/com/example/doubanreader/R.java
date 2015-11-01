@@ -24,7 +24,7 @@ public final class R {
         public static final int message=0x7f020006;
     }
     public static final class id {
-        public static final int action_settings=0x7f08002b;
+        public static final int action_settings=0x7f08002c;
         public static final int arrow=0x7f080011;
         public static final int author=0x7f08001e;
         public static final int author1=0x7f080025;
@@ -65,6 +65,7 @@ public final class R {
         public static final int scrollView1=0x7f08001b;
         public static final int search_book=0x7f080016;
         public static final int share=0x7f08001a;
+        public static final int show_more=0x7f08002b;
         public static final int sub_title_id=0x7f080002;
         public static final int title_id=0x7f080001;
         public static final int updated_at=0x7f080014;

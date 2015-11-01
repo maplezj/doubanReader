@@ -152,6 +152,13 @@
                         android:id="@+id/book_reviews"
                         android:layout_below="@+id/book_reviews_text">
                     </com.example.doubanreader.ListViewForScrollView>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/show_more"
+                        android:layout_below="@+id/book_reviews"
+                        android:text="加载更多..."
+                        android:layout_centerHorizontal="true"/>
         
                 </RelativeLayout>
                 

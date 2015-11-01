@@ -1,9 +1,12 @@
 package com.example.doubanreader;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -23,12 +26,18 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
+
 
 /**
  * Created by zhaojian26 on 15-10-11.
  */
-public class ShowBookInfo extends Activity {
+public class ShowBookInfo extends Activity implements View.OnClickListener{
     private ImageView bookImage ;
     private TextView author;
     private TextView number;
@@ -39,6 +48,12 @@ public class ShowBookInfo extends Activity {
     private Button back;
     private ListView reviewsList;
     private List bookReviewDataList = ShowBookInfoUtils.bookReviewDataList;
+    private Button showMore;
+    public static int reviewNumber = 20;
+    String data;
+    public final static int FINISH = 1;
+    BookReviewAdapter adapter;
+    public  ProgressDialog showBookReviewDialog;
 
     //用于点击EditText以外时隐藏键盘
     @Override
@@ -79,6 +94,66 @@ public class ShowBookInfo extends Activity {
         return false;
     }
 
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.d("ShowBookInfo", "---------------Handler");
+            switch (msg.what){
+                case FINISH:
+                    //此处由于我们复写了listview的绘制方法，因此每次刷新时由于其尺寸发生变化，需重新绘制(故我猜测list.setAdapter（）源码里应该对list进行了绘制，Listview充当viewgroup，adapter里的数据充当view，不知对否)
+                    adapter = new BookReviewAdapter(ShowBookInfo.this, R.layout.book_review_item,bookReviewDataList);
+                    reviewsList.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    showBookReviewDialog.dismiss();
+                    Log.d("ShowBookInfo", "---------------Handler1");
+                    break;
+                default:
+            }
+        }
+    };
+
+    @Override
+    public void onClick(View v) {
+        showBookReviewDialog = new ProgressDialog(this);
+        showBookReviewDialog.setCancelable(true);
+        showBookReviewDialog.setMessage("加载中，请稍候...");
+        showBookReviewDialog.show();
+        //点击加载更多后重新请求数据，并且数据量每次加10条，从而实现加载更多功能
+        reviewNumber=reviewNumber+10;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpURLConnection connection = null;
+                try{
+                    URL bookReviewUrl = new URL(Constant.BOOK_REVIEW_URL+ShowBookInfoUtils.id+"/reviews?count="+reviewNumber);
+                    connection = (HttpURLConnection)bookReviewUrl.openConnection();
+                    connection.setRequestMethod("GET");
+                    InputStream in = connection.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null){
+                        response.append(line);
+                    }
+                    data = response.toString();
+                    bookReviewDataList = new DealBookReviewByJSON().parseJSONWithJSONObject(data);
+                    Log.d("ShowBookInfo", data);
+                    Message message = new Message();
+                    message.what = FINISH;
+                    handler.sendMessage(message);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }finally {
+                    if(connection != null) {
+                        connection.disconnect();
+                    }
+                }
+            }
+        }).start();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("ShowBookInfo", "---------------222");
@@ -94,13 +169,15 @@ public class ShowBookInfo extends Activity {
         authorInfo = (TextView)findViewById(R.id.author_info);
         catalog = (TextView)findViewById(R.id.catalog);
         back = (Button)findViewById(R.id.back_button);
+        showMore = (Button)findViewById(R.id.show_more);
+
         author.setText(bookDetail.getAuthor());
         number.setText(bookDetail.getNumber());
         authorInfo.setText(bookDetail.getAuthorInfo());
         catalog.setText(bookDetail.getCatalog());
 
         reviewsList = (ListViewForScrollView)findViewById(R.id.book_reviews);
-         BookReviewAdapter adapter = new BookReviewAdapter(ShowBookInfo.this, R.layout.book_review_item,bookReviewDataList);
+          adapter = new BookReviewAdapter(ShowBookInfo.this, R.layout.book_review_item,bookReviewDataList);
         reviewsList.setAdapter(adapter);
 
 
@@ -129,6 +206,11 @@ public class ShowBookInfo extends Activity {
 
             }
         });
+
+        showMore.setOnClickListener(this);
+
+
+
 
         catalog.setOnClickListener(new View.OnClickListener() {
             Boolean flag = true;

@@ -32,7 +32,7 @@ public class BookReviewAdapter extends ArrayAdapter<BookReviewData> {
         TextView reviewComment = (TextView)view.findViewById(R.id.review_comment);
         TextView reviewContent = (TextView)view.findViewById(R.id.review_content);
 
-        reviewStar.setRating((Float.parseFloat(bookReviewData.getReviewStar()))/2);
+        reviewStar.setRating(Float.parseFloat(bookReviewData.getReviewStar()));
         reviewTime.setText(bookReviewData.getReviewTime());
         reviewAuthor.setText(bookReviewData.getReviewAuthor());
         reviewSupport.setText(bookReviewData.getReviewSupport());
