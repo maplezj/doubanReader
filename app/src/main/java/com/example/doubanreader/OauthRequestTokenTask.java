@@ -27,10 +27,11 @@ public class OauthRequestTokenTask extends AsyncTask<Void, Void, Void>{
 		// TODO Auto-generated method stub
 		 }catch(Exception e){
 		e.printStackTrace();
-		 }//finally{
-			//if(connection != null){
-             //   connection.disconnect();
-		  //  }
+		 }finally {
+			 if (connection != null) {
+				 connection.disconnect();
+			 }
+		 }
 		return null;
 	}
 

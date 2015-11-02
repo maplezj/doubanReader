@@ -82,16 +82,58 @@
                         android:layout_toRightOf="@+id/number_text"
                         android:layout_alignBottom="@+id/number_text"
                         android:id="@+id/number"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/book_image"
-                        android:text="写评论"
-                        android:id="@+id/comment"/>
+        
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/comment"
+                        android:text="作者简介--------------"
+                        android:layout_below="@+id/book_image"
+                        android:layout_marginTop="20sp"
+                        android:id="@+id/author1"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/author_info"
+                        android:layout_below="@+id/author1"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="目  录--------------"
+                        android:layout_below="@+id/author_info"
+                        android:id="@+id/catalog_text"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/catalog_text"
+                        android:id="@+id/catalog"
+                        android:ellipsize="end"
+                        android:lines="5"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/catalog"
+                        android:text="读者评论--------------"
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/book_reviews_text"/>
+                    <com.example.doubanreader.ListViewForScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/book_reviews"
+                        android:layout_below="@+id/book_reviews_text">
+                    </com.example.doubanreader.ListViewForScrollView>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/show_more"
+                        android:layout_below="@+id/book_reviews"
+                        android:text="加载更多..."
+                        android:layout_centerHorizontal="true"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/show_more"
                         android:layout_marginTop="20sp"
                         android:text="标 题  "
                         android:textSize="20sp"
@@ -112,53 +154,15 @@
                         android:id="@+id/comment_edit_title"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"/>
-        
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="作者简介--------------"
-                        android:layout_below="@+id/comment_edit_title"
-                        android:layout_marginTop="20sp"
-                        android:id="@+id/author1"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/author_info"
-                        android:layout_below="@+id/author1"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="目录--------------"
-                        android:layout_below="@+id/author_info"
-                        android:id="@+id/catalog_text"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/catalog_text"
-                        android:id="@+id/catalog"
-                        android:ellipsize="end"
-                        android:lines="5"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/catalog"
-                        android:text="读者评论"
-                        android:layout_marginTop="20dp"
-                        android:id="@+id/book_reviews_text"/>
-                    <com.example.doubanreader.ListViewForScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/book_reviews"
-                        android:layout_below="@+id/book_reviews_text">
-                    </com.example.doubanreader.ListViewForScrollView>
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"/>
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/show_more"
-                        android:layout_below="@+id/book_reviews"
-                        android:text="加载更多..."
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_below="@+id/comment_edit_title"
+                        android:layout_alignParentRight="true"
+                        android:text="写评论"
+                        android:id="@+id/comment"/>
         
                 </RelativeLayout>
                 

@@ -1,6 +1,7 @@
 package com.example.doubanreader;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -25,7 +26,6 @@ public class PrepareRequestTokenActivity extends Activity{
 		if(uri != null && uri.getScheme().equals("myapp")){
 			new RetrieveAccessTokenTask(this, prefs).execute(uri);
 			Log.d("RetrieveAccessTokenTask", "----------------");
-			finish();
 		}
 		
 	}

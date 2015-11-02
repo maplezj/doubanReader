@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -98,7 +99,6 @@ public class ShowBookInfo extends Activity implements View.OnClickListener{
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Log.d("ShowBookInfo", "---------------Handler");
             switch (msg.what){
                 case FINISH:
                     //此处由于我们复写了listview的绘制方法，因此每次刷新时由于其尺寸发生变化，需重新绘制(故我猜测list.setAdapter（）源码里应该对list进行了绘制，Listview充当viewgroup，adapter里的数据充当view，不知对否)
@@ -106,7 +106,6 @@ public class ShowBookInfo extends Activity implements View.OnClickListener{
                     reviewsList.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     showBookReviewDialog.dismiss();
-                    Log.d("ShowBookInfo", "---------------Handler1");
                     break;
                 default:
             }
@@ -156,9 +155,10 @@ public class ShowBookInfo extends Activity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("ShowBookInfo", "---------------222");
         super.onCreate(savedInstanceState);
+        requestWindowFeature(getWindow().FEATURE_NO_TITLE);
         setContentView(R.layout.show_book);
+        SearchBookUtils.showBookDialog.dismiss();
         BookDetail bookDetail = (BookDetail)getIntent().getSerializableExtra("bookDetail");
 
         bookImage = (ImageView)findViewById(R.id.book_image);
@@ -226,5 +226,17 @@ public class ShowBookInfo extends Activity implements View.OnClickListener{
                 }
             }
         });
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        //退出页面后清除reviewNumber的累加
+        super.onKeyDown(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            reviewNumber = 20;
+            Log.d("ShowBookInfo", reviewNumber+"");
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

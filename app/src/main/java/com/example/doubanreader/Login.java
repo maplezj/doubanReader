@@ -13,6 +13,7 @@ public class Login extends Activity implements OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(getWindow().FEATURE_NO_TITLE);
         setContentView(R.layout.login);
         loginButton = (Button)findViewById(R.id.login_button);
         loginButton.setOnClickListener(this);

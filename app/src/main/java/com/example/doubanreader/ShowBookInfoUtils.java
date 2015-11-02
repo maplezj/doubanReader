@@ -84,7 +84,6 @@ public class ShowBookInfoUtils extends AsyncTask<Void, Void, BookDetail> {
         Bundle bundle = new Bundle();
         bundle.putSerializable("bookDetail", bookDetail);
         intent.putExtras(bundle);
-        SearchBookUtils.showBookDialog.dismiss();
         SearchBookUtils.context.startActivity(intent);
     }
 }
