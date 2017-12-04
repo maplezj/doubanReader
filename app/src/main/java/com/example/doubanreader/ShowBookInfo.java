@@ -235,6 +235,7 @@ public class ShowBookInfo extends Activity implements View.OnClickListener{
                 && event.getRepeatCount() == 0) {
             reviewNumber = 20;
             Log.d("ShowBookInfo", reviewNumber+"");
+            Log.d("git test", "onKeyDown: test");
             return true;
         }
         return super.onKeyDown(keyCode, event);
